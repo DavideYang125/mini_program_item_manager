@@ -42,7 +42,13 @@ Page({
         wx.setNavigationBarTitle({ title: '编辑物品' })
       }
     } else {
-      data.selectedCategoryId = categories.length > 0 ? categories[0].id : null
+      const otherIndex = categories.findIndex(c => c.name === '其他')
+      if (otherIndex >= 0) {
+        data.selectedCategoryId = categories[otherIndex].id
+        data.categoryIndex = otherIndex
+      } else {
+        data.selectedCategoryId = categories.length > 0 ? categories[0].id : null
+      }
     }
 
     this.setData(data)
