@@ -1,0 +1,79 @@
+<view class="form-page">
+  <!-- 名称 -->
+  <view class="form-group">
+    <text class="form-label">名称 <text class="required">*</text></text>
+    <input class="form-input" placeholder="请输入物品名称" value="{{name}}" bindinput="onNameInput" />
+  </view>
+
+  <!-- 分类 -->
+  <view class="form-group">
+    <text class="form-label">分类</text>
+    <picker mode="selector" range="{{categories}}" range-key="name" value="{{categoryIndex}}" bindchange="onCategoryChange">
+      <view class="form-picker">
+        <text wx:if="{{categories.length > 0}}">{{categories[categoryIndex].name}}</text>
+        <text wx:else class="placeholder">请选择分类</text>
+        <text class="picker-arrow">›</text>
+      </view>
+    </picker>
+  </view>
+
+  <!-- 位置 -->
+  <view class="form-group">
+    <text class="form-label">存放位置</text>
+    <input class="form-input" placeholder="如：冰箱、柜子" value="{{location}}" bindinput="onLocationInput" />
+  </view>
+
+  <!-- 过期日期 -->
+  <view class="form-group">
+    <text class="form-label">过期日期</text>
+    <view class="date-row">
+      <picker mode="date" value="{{expiryDate}}" bindchange="onDateChange">
+        <view class="form-picker flex-1">
+          <text wx:if="{{expiryDate}}">{{expiryDate}}</text>
+          <text wx:else class="placeholder">选择日期</text>
+        </view>
+      </picker>
+      <text wx:if="{{expiryDate}}" class="clear-date" bindtap="onClearDate">清除</text>
+    </view>
+  </view>
+
+  <!-- 数量 + 单位 -->
+  <view class="form-group">
+    <text class="form-label">数量 / 单位</text>
+    <view class="quantity-row">
+      <input class="form-input quantity-input" type="number" value="{{quantity}}" bindinput="onQuantityInput" />
+      <input class="form-input unit-input" placeholder="个、瓶、盒" value="{{unit}}" bindinput="onUnitInput" />
+    </view>
+  </view>
+
+  <!-- 备注 -->
+  <view class="form-group">
+    <text class="form-label">备注</text>
+    <textarea class="form-textarea" placeholder="添加备注" value="{{notes}}" bindinput="onNotesInput" auto-height maxlength="-1" />
+  </view>
+
+  <!-- 照片 -->
+  <view class="form-group">
+    <text class="form-label">照片</text>
+    <view wx:if="{{photoPath}}" class="photo-preview">
+      <image class="photo-image" src="{{photoFullPath}}" mode="aspectFill" bindtap="onPreviewPhoto" />
+      <view class="photo-remove" bindtap="onRemovePhoto">
+        <text>✕</text>
+      </view>
+    </view>
+    <view wx:else class="photo-picker" bindtap="onPickPhoto">
+      <text class="photo-icon">📷</text>
+      <text class="photo-text">点击添加照片</text>
+    </view>
+  </view>
+
+  <!-- 保存按钮 -->
+  <view class="form-actions">
+    <button class="save-btn" bindtap="onSave">保存</button>
+  </view>
+
+  <!-- 编辑模式删除按钮 -->
+  <view wx:if="{{isEdit}}" class="delete-section">
+    <button class="delete-btn" bindtap="onDelete">删除物品</button>
+  </view>
+</view>

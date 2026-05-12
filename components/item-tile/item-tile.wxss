@@ -1,0 +1,74 @@
+.item-tile-wrapper {
+  position: relative;
+  overflow: hidden;
+  background-color: #ffffff;
+}
+
+.item-tile {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 24rpx 32rpx;
+  background-color: #ffffff;
+  transition: transform 0.2s ease;
+  z-index: 1;
+  border-bottom: 1rpx solid #f0f0f0;
+}
+
+.item-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.item-name {
+  font-size: 30rpx;
+  font-weight: 500;
+  color: #333;
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.item-subtitle {
+  font-size: 24rpx;
+  color: #999;
+  margin-top: 6rpx;
+  display: flex;
+  align-items: center;
+}
+
+.item-category {
+  color: #666;
+}
+
+.item-location {
+  color: #999;
+}
+
+.item-expiry {
+  margin-top: 6rpx;
+  font-size: 24rpx;
+}
+
+.item-quantity {
+  margin-left: 16rpx;
+  font-size: 26rpx;
+  color: #666;
+  white-space: nowrap;
+}
+
+.delete-btn {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 160rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #F44336;
+  color: #ffffff;
+  font-size: 28rpx;
+  z-index: 0;
+}

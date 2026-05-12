@@ -1,0 +1,46 @@
+<view class="page">
+  <!-- 搜索栏 -->
+  <view class="search-bar">
+    <view class="search-input-wrap">
+      <text class="search-icon">🔍</text>
+      <input
+        class="search-input"
+        placeholder="搜索物品名称或备注"
+        value="{{searchQuery}}"
+        bindinput="onSearchInput"
+        confirm-type="search"
+      />
+      <text wx:if="{{searchQuery}}" class="clear-btn" bindtap="onClearSearch">✕</text>
+    </view>
+    <text class="menu-btn" bindtap="onImportExport">⋮</text>
+  </view>
+
+  <!-- 物品列表 -->
+  <view class="item-list">
+    <block wx:for="{{items}}" wx:key="id">
+      <item-tile
+        item="{{item}}"
+        show-delete="{{true}}"
+        bind:itemtap="onItemTap"
+        bind:itemdelete="onItemDelete"
+      />
+    </block>
+  </view>
+
+  <!-- 空状态 -->
+  <empty-state wx:if="{{items.length === 0 && !loading && !searchQuery}}" message="暂无物品，点击 + 添加" />
+  <empty-state wx:if="{{items.length === 0 && !loading && searchQuery}}" message="未找到匹配的物品" />
+
+  <!-- 加载更多 -->
+  <view wx:if="{{loading}}" class="loading-more">
+    <text>加载中...</text>
+  </view>
+  <view wx:if="{{!hasMore && items.length > 0}}" class="no-more">
+    <text>没有更多了</text>
+  </view>
+
+  <!-- FAB -->
+  <view class="fab" bindtap="onAddItem">
+    <text>+</text>
+  </view>
+</view>

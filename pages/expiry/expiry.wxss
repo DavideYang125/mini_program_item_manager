@@ -1,0 +1,86 @@
+.page {
+  min-height: 100vh;
+}
+
+.section {
+  margin-bottom: 16rpx;
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  padding: 24rpx 32rpx 12rpx;
+}
+
+.indicator {
+  width: 6rpx;
+  height: 32rpx;
+  border-radius: 3rpx;
+  margin-right: 12rpx;
+  background-color: #F44336;
+}
+
+.warning-indicator {
+  background-color: #FF9800;
+}
+
+.section-title {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #333;
+}
+
+.section-list {
+  background-color: #ffffff;
+}
+
+.expiry-item {
+  display: flex;
+  align-items: center;
+  padding: 24rpx 32rpx;
+  border-bottom: 1rpx solid #f0f0f0;
+  position: relative;
+}
+
+.expiry-bar {
+  position: absolute;
+  left: 0;
+  top: 12rpx;
+  bottom: 12rpx;
+  width: 6rpx;
+  border-radius: 3rpx;
+  background-color: #F44336;
+}
+
+.warning-bar {
+  background-color: #FF9800;
+}
+
+.expiry-content {
+  flex: 1;
+  min-width: 0;
+  padding-left: 16rpx;
+}
+
+.expiry-name {
+  font-size: 30rpx;
+  font-weight: 500;
+  color: #333;
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.expiry-subtitle {
+  font-size: 24rpx;
+  color: #999;
+  margin-top: 6rpx;
+  display: block;
+}
+
+.expiry-date {
+  margin-left: 16rpx;
+  font-size: 24rpx;
+  white-space: nowrap;
+}

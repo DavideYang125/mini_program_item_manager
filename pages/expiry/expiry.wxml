@@ -1,0 +1,44 @@
+<view class="page">
+  <!-- 已过期 -->
+  <view wx:if="{{expiredItems.length > 0}}" class="section">
+    <view class="section-header expired">
+      <view class="indicator" />
+      <text class="section-title">已过期 ({{expiredItems.length}})</text>
+    </view>
+    <view class="section-list">
+      <view wx:for="{{expiredItems}}" wx:key="id" class="expiry-item" bindtap="onItemTap" data-id="{{item.id}}">
+        <view class="expiry-bar expired-bar" />
+        <view class="expiry-content">
+          <text class="expiry-name">{{item.name}}</text>
+          <text class="expiry-subtitle">{{item.categoryName}}<text wx:if="{{item.location}}"> · {{item.location}}</text></text>
+        </view>
+        <view class="expiry-date">
+          <text style="color: {{item.expiryStatusColor}}">{{item.expiryDate}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 即将过期 -->
+  <view wx:if="{{expiringSoonItems.length > 0}}" class="section">
+    <view class="section-header expiring">
+      <view class="indicator warning-indicator" />
+      <text class="section-title">即将过期 ({{expiringSoonItems.length}})</text>
+    </view>
+    <view class="section-list">
+      <view wx:for="{{expiringSoonItems}}" wx:key="id" class="expiry-item" bindtap="onItemTap" data-id="{{item.id}}">
+        <view class="expiry-bar warning-bar" />
+        <view class="expiry-content">
+          <text class="expiry-name">{{item.name}}</text>
+          <text class="expiry-subtitle">{{item.categoryName}}<text wx:if="{{item.location}}"> · {{item.location}}</text></text>
+        </view>
+        <view class="expiry-date">
+          <text style="color: {{item.expiryStatusColor}}">{{item.expiryDate}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 空状态 -->
+  <empty-state wx:if="{{expiredItems.length === 0 && expiringSoonItems.length === 0}}" message="没有物品过期或临期" />
+</view>

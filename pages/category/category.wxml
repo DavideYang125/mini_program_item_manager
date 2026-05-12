@@ -1,0 +1,44 @@
+<view class="page">
+  <!-- 分类列表 -->
+  <view class="category-list">
+    <view wx:for="{{categories}}" wx:key="id" class="category-item">
+      <view class="category-info">
+        <text class="category-name">{{item.name}}</text>
+        <text class="category-count">{{item.itemCount}} 个物品</text>
+      </view>
+      <view class="category-actions">
+        <text wx:if="{{item.isPreset}}" class="lock-icon">🔒</text>
+        <block wx:else>
+          <text class="action-btn edit-btn" bindtap="onEditCategory" data-id="{{item.id}}">编辑</text>
+          <text class="action-btn delete-btn-text" bindtap="onDeleteCategory" data-id="{{item.id}}">删除</text>
+        </block>
+      </view>
+    </view>
+  </view>
+
+  <!-- 空状态 -->
+  <empty-state wx:if="{{categories.length === 0}}" message="暂无分类" />
+
+  <!-- FAB -->
+  <view class="fab" bindtap="onAddCategory">
+    <text>+</text>
+  </view>
+
+  <!-- 添加/编辑对话框 -->
+  <view wx:if="{{showDialog}}" class="dialog-overlay" bindtap="onDialogCancel">
+    <view class="dialog" catchtap="">
+      <text class="dialog-title">{{dialogMode === 'add' ? '添加分类' : '编辑分类'}}</text>
+      <input
+        class="dialog-input"
+        placeholder="请输入分类名称"
+        value="{{dialogName}}"
+        bindinput="onDialogInput"
+        focus="{{showDialog}}"
+      />
+      <view class="dialog-actions">
+        <button class="dialog-btn cancel-btn" bindtap="onDialogCancel">取消</button>
+        <button class="dialog-btn confirm-btn" bindtap="onDialogConfirm">确定</button>
+      </view>
+    </view>
+  </view>
+</view>

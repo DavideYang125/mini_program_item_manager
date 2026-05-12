@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "物品管理",
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "empty-state": "/components/empty-state/empty-state",
+    "item-tile": "/components/item-tile/item-tile"
+  }
+}
