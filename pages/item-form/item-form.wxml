@@ -52,21 +52,6 @@
     <textarea class="form-textarea" placeholder="添加备注" value="{{notes}}" bindinput="onNotesInput" auto-height maxlength="-1" />
   </view>
 
-  <!-- 照片 -->
-  <view class="form-group">
-    <text class="form-label">照片</text>
-    <view wx:if="{{photoPath}}" class="photo-preview">
-      <image class="photo-image" src="{{photoFullPath}}" mode="aspectFill" bindtap="onPreviewPhoto" />
-      <view class="photo-remove" bindtap="onRemovePhoto">
-        <text>✕</text>
-      </view>
-    </view>
-    <view wx:else class="photo-picker" bindtap="onPickPhoto">
-      <text class="photo-icon">📷</text>
-      <text class="photo-text">点击添加照片</text>
-    </view>
-  </view>
-
   <!-- 保存按钮 -->
   <view class="form-actions">
     <button class="save-btn" bindtap="onSave">保存</button>

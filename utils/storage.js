@@ -136,7 +136,6 @@ function insertItem(itemData) {
     quantity: itemData.quantity || 1,
     unit: itemData.unit || '',
     notes: itemData.notes || '',
-    photoPath: itemData.photoPath || '',
     createdAt: now,
     updatedAt: now,
   }
@@ -159,7 +158,6 @@ function updateItem(id, itemData) {
     quantity: itemData.quantity !== undefined ? itemData.quantity : items[index].quantity,
     unit: itemData.unit !== undefined ? itemData.unit : items[index].unit,
     notes: itemData.notes !== undefined ? itemData.notes : items[index].notes,
-    photoPath: itemData.photoPath !== undefined ? itemData.photoPath : items[index].photoPath,
     updatedAt: now,
   }
   _setItems(items)
@@ -321,7 +319,6 @@ function importData(jsonString, replace) {
         quantity: itemData.quantity || 1,
         unit: itemData.unit || '',
         notes: itemData.notes || '',
-        photoPath: '',
         createdAt: now,
         updatedAt: now,
       })

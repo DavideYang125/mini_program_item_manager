@@ -13,8 +13,6 @@ Page({
     quantity: 1,
     unit: '',
     notes: '',
-    photoPath: '',
-    photoFullPath: '',
   },
 
   onLoad(options) {
@@ -36,8 +34,6 @@ Page({
           quantity: item.quantity,
           unit: item.unit,
           notes: item.notes,
-          photoPath: item.photoPath,
-          photoFullPath: item.photoPath ? `${wx.env.USER_DATA_PATH}/${item.photoPath}` : '',
         })
         wx.setNavigationBarTitle({ title: '编辑物品' })
       }
@@ -90,49 +86,8 @@ Page({
     this.setData({ notes: e.detail.value })
   },
 
-  onPickPhoto() {
-    wx.chooseMedia({
-      count: 1,
-      mediaType: ['image'],
-      sizeType: ['compressed'],
-      success: (res) => {
-        const tempPath = res.tempFiles[0].tempFilePath
-        const fs = wx.getFileSystemManager()
-        const ext = tempPath.split('.').pop() || 'jpg'
-        const fileName = `${Date.now()}_${Math.floor(Math.random() * 1000)}.${ext}`
-        const dirPath = `${wx.env.USER_DATA_PATH}/photos`
-
-        try {
-          fs.accessSync(dirPath)
-        } catch (e) {
-          fs.mkdirSync(dirPath, true)
-        }
-
-        const destPath = `${dirPath}/${fileName}`
-        fs.saveFileSync(tempPath, destPath)
-        this.setData({
-          photoPath: `photos/${fileName}`,
-          photoFullPath: destPath,
-        })
-      },
-    })
-  },
-
-  onPreviewPhoto() {
-    if (!this.data.photoPath) return
-    const fullPath = `${wx.env.USER_DATA_PATH}/${this.data.photoPath}`
-    wx.previewImage({
-      current: fullPath,
-      urls: [fullPath],
-    })
-  },
-
-  onRemovePhoto() {
-    this.setData({ photoPath: '', photoFullPath: '' })
-  },
-
   onSave() {
-    const { name, selectedCategoryId, location, expiryDate, quantity, unit, notes, photoPath } = this.data
+    const { name, selectedCategoryId, location, expiryDate, quantity, unit, notes } = this.data
     if (!name.trim()) {
       wx.showToast({ title: '请输入物品名称', icon: 'none' })
       return
@@ -150,7 +105,6 @@ Page({
       quantity: quantity || 1,
       unit,
       notes,
-      photoPath,
     }
 
     if (this.data.isEdit) {
